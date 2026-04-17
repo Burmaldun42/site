@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Подросток и алкоголь: честный разговор</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* header / hero */
+        .hero {
+            background: linear-gradient(135deg, #0b2b3b 0%, #123e52 100%);
+            color: white;
+            padding: 64px 0 72px;
+            text-align: center;
+            border-bottom: 6px solid #e67e22;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 750px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .hero-badge {
+            background: #e67e22;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        /* навигация быстрая */
+        .nav-links {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(2px);
+        }
+        .nav-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+            padding: 14px 20px;
+        }
+        .nav-flex a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #1e4663;
+            transition: 0.2s;
+            font-size: 1rem;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+        }
+        .nav-flex a:hover {
+            color: #e67e22;
+            border-bottom-color: #e67e22;
+        }
+
+        /* секции */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: #e67e22;
+            border-radius: 4px;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 28px rgba(0,0,0,0.1);
+        }
+        .card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0f3b4f;
+            margin-bottom: 16px;
+            border-left: 5px solid #e67e22;
+            padding-left: 16px;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #e67e22;
+            display: block;
+            line-height: 1;
+        }
+        .myth-fact {
+            background: #fef5e8;
+            border-left: 5px solid #e67e22;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 16px;
+        }
+        .help-box {
+            background: #eef2fa;
+            border-radius: 28px;
+            padding: 28px;
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            background: #e67e22;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            margin-top: 12px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #c95f0f;
+            transform: scale(0.98);
+        }
+        footer {
+            background: #0e2a36;
+            color: #ccdde5;
+            text-align: center;
+            padding: 32px 20px;
+            font-size: 0.9rem;
+        }
+        .quote {
+            font-style: italic;
+            background: #f9fafc;
+            padding: 24px;
+            border-radius: 28px;
+            margin: 28px 0;
+            text-align: center;
+            font-size: 1.1rem;
+            border: 1px solid #e2edf2;
+        }
+        .inline-icon {
+            font-size: 1.4rem;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2rem; }
+            .container { padding: 0 20px; }
+            .section-title { font-size: 1.8rem; }
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: #e9f0f5;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="container">
+        <div class="hero-badge">⭐ Индивидуальный итоговый проект</div>
+        <h1>Алкоголь и подросток:<br>честный разговор</h1>
+        <p>Научно обоснованные факты, разбор мифов и реальная помощь тем, кто хочет разобраться в влиянии алкоголя на молодой организм.</p>
+    </div>
+</div>
+
+<div class="nav-links">
+    <div class="container nav-flex">
+        <a href="#actual">Актуальность</a>
+        <a href="#problem">Проблема</a>
+        <a href="#research">Исследование</a>
+        <a href="#body">Влияние на организм</a>
+        <a href="#myths">Мифы vs Факты</a>
+        <a href="#product">Продукт проекта</a>
+        <a href="#help">Помощь</a>
+    </div>
+</div>
+
+<main>
+    <!-- Актуальность + проблема -->
+    <section id="actual">
+        <div class="container">
+            <h2 class="section-title">Актуальность</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 20px;">По данным ВОЗ и российской статистики, более 40% старшеклассников хотя бы раз пробовали алкоголь, а каждый пятый подросток употребляет его регулярно. При этом многие уверены в «безвредности» слабоалкогольных напитков и пива. Проект направлен на формирование достоверного, понятного и визуально наглядного контента для сверстников.</p>
+            <div class="card-grid" style="margin-top: 20px;">
+                <div class="card"><span class="stat-number">65%</span><br><strong>подростков</strong> считают, что слабоалкогольные напитки безвредны (опрос в 10-х классах).</div>
+                <div class="card"><span class="stat-number">40%</span><br>не знают о влиянии алкоголя на гормональный фон и работу мозга.</div>
+                <div class="card"><span class="stat-number">30%</span><br>уверены, что «пиво — это не алкоголь». Разрушаем этот миф.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="problem" style="background: #fefaf5;">
+        <div class="container">
+            <h2 class="section-title">Проблема проекта</h2>
+            <div class="quote">
+                📢 Подростки не имеют полной, научно обоснованной информации о реальном влиянии алкоголя на их организм, либо не воспринимают её серьёзно. Уроки ОБЖ и биологии часто дают сухие факты без связи с жизнью, а в интернете много страшилок или скрытой рекламы. <br><strong>Противоречие:</strong> потребность в понятном и объективном контенте — и его отсутствие в удобной для подростка форме.
+            </div>
+            <p style="margin-top: 16px;"><strong>Объект исследования:</strong> процесс формирования отношения подростков к алкоголю.<br>
+            <strong>Предмет проекта:</strong> влияние алкоголя на физическое и психическое здоровье подростков 14–17 лет.</p>
+        </div>
+    </section>
+
+    <!-- Исследование / анкетирование -->
+    <section id="research">
+        <div class="container">
+            <h2 class="section-title">Исследование: что показал опрос</h2>
+            <p>В рамках проекта проведено анонимное анкетирование среди учащихся 9–11 классов (всего 30 респондентов). Результаты подтвердили низкий уровень осведомлённости и наличие устойчивых мифов.</p>
+            <div class="card-grid" style="margin-top: 28px;">
+                <div class="card">
+                    <h3>📊 Ключевые цифры</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>75% не знают, что алкоголь нарушает выработку половых гормонов в подростковом возрасте.</li>
+                        <li>58% уверены: «бокал шампанского на праздник — это нормально и неопасно».</li>
+                        <li>82% хотели бы получить краткий, яркий буклет или презентацию с фактами.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🧠 Выводы</h3>
+                    <p>Подростки недооценивают долгосрочные риски: снижение памяти, ухудшение обучаемости, эмоциональную нестабильность. Необходим визуальный продукт (буклет/презентация) с опровержением главных заблуждений.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Влияние на организм подростка (главный блок) -->
+    <section id="body">
+        <div class="container">
+            <h2 class="section-title">Как алкоголь влияет на организм подростка?</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>🧠 Мозг и психика</h3>
+                    <p>Этанол нарушает формирование лобных долей (отвечают за контроль, планирование). Ухудшается память, снижается концентрация, повышается риск депрессии и тревожности. У подростков зависимость формируется в 3–4 раза быстрее, чем у взрослых.</p>
+                </div>
+                <div class="card">
+                    <h3>❤️ Сердечно-сосудистая система</h3>
+                    <p>Алкоголь вызывает скачки давления, тахикардию, дистрофию миокарда. Юное сердце изнашивается быстрее, возникают аритмии и риск инсульта даже в молодом возрасте.</p>
+                </div>
+                <div class="card">
+                    <h3>🧬 Гормональный фон</h3>
+                    <p>Этанол угнетает выработку тестостерона у юношей и нарушает цикл у девушек. Это задерживает половое созревание, снижает фертильность в будущем, вызывает проблемы с кожей и лишний вес.</p>
+                </div>
+                <div class="card">
+                    <h3>🍺 Печень и ЖКТ</h3>
+                    <p>Печень подростка очень уязвима: жировая дистрофия, гепатит, цирроз могут развиться после 2–3 лет регулярного употребления. Также страдает поджелудочная железа (панкреатит).</p>
+                </div>
+            </div>
+            <div class="myth-fact">
+                <strong>📌 Факт, который поражает:</strong> Употребление алкоголя в возрасте 14–17 лет снижает IQ в среднем на 5–10 пунктов, а также увеличивает риск алкоголизма во взрослой жизни на 60% (данные исследований NIAAA).
+            </div>
+        </div>
+    </section>
+
+    <!-- Мифы и правда -->
+    <section id="myths" style="background: #f4f9fe;">
+        <div class="container">
+            <h2 class="section-title">7 главных мифов об алкоголе — разоблачение</h2>
+            <div class="card-grid">
+                <div class="card"><strong>❌ Миф 1:</strong> «Пиво — это не алкоголь».<br>✅ Факт: в 0,5 л пива содержится 20–25 г чистого спирта, что равно 50 мл водки. Печень страдает одинаково.</div>
+                <div class="card"><strong>❌ Миф 2:</strong> «Слабоалкогольные коктейли безвредны».<br>✅ Факт: сахар + спирт = двойной удар по поджелудочной железе и быстрая интоксикация.</div>
+                <div class="card"><strong>❌ Миф 3:</strong> «Алкоголь помогает согреться».<br>✅ Факт: он расширяет сосуды — тепло уходит быстрее, наступает переохлаждение.</div>
+                <div class="card"><strong>❌ Миф 4:</strong> «Бокал красного вина полезен для сердца».<br>✅ Факт: для подростка любая доза — токсин, полезные полифенолы можно получить из винограда.</div>
+                <div class="card"><strong>❌ Миф 5:</strong> «От одного раза ничего не будет».<br>✅ Факт: одна доза убивает тысячи нейронов, нарушает сон и память на срок до 2 недель.</div>
+                <div class="card"><strong>❌ Миф 6:</strong> «Алкоголь снимает стресс».<br>✅ Факт: эффект кратковременный, после — тревога и апатия. Подростки учатся избегать проблем, а не решать их.</div>
+                <div class="card"><strong>❌ Миф 7:</strong> «Я сильный, зависимость мне не грозит».<br>✅ Факт: из-за незрелой психики 1 из 3 подростков, начавших пить до 15 лет, становятся зависимыми.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Продукт проекта (буклет + презентация) -->
+    <section id="product">
+        <div class="container">
+            <h2 class="section-title">Продукт проекта</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>📘 Информационный буклет</h3>
+                    <p>Двусторонний буклет формата А4 «Алкоголь и подросток: честный разговор». Содержит: ключевые факты о влиянии на мозг, гормоны, печень; 7 мифов с опровержениями; статистику по школе; телефоны доверия и советы «как сказать нет».</p>
+                    <p><strong>🎯 Апробация:</strong> буклет распространён среди учащихся 10-х классов (30 экземпляров), получены положительные отзывы от классного руководителя и психолога.</p>
+                </div>
+                <div class="card">
+                    <h3>📊 Мультимедийная презентация</h3>
+                    <p>12 слайдов в Google Slides с инфографикой, схемами «путь алкоголя в организме подростка», результатами анкетирования и видео-разбором мифов. Использована на классных часах 10 «А» и 10 «Б».</p>
+                    <p><em>✨ Вдохновение: минималистичный дизайн медицинских блогов и короткие образовательные ролики.</em></p>
+                </div>
+            </div>
+            <div class="quote">
+                💡 Результат: создан готовый наглядный продукт, который может использоваться на уроках ОБЖ, биологии и родительских собраниях. Учитель биологии отметил высокую научную достоверность.
+            </div>
+        </div>
+    </section>
+
+    <!-- Ресурсы и этапы (кратко) -->
+    <section style="background: white;">
+        <div class="container">
+            <h2 class="section-title">Ресурсы и этапы работы</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between;">
+                <div style="flex:1; min-width: 200px;">
+                    <h3>📌 Ресурсы</h3>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li>🖥️ Компьютер, интернет, принтер</li>
+                        <li>📚 Научные статьи (eLibrary, ВОЗ, КиберЛенинка)</li>
+                        <li>🧑‍🏫 Консультации психолога и учителя биологии</li>
+                        <li>🎨 Canva / Google Slides для дизайна</li>
+                    </ul>
+                </div>
+                <div style="flex:2;">
+                    <h3>🗓️ Основные этапы (согласно Положению)</h3>
+                    <table>
+                        <tr><th>Этап</th><th>Содержание</th></tr>
+                        <tr><td>Подготовительный (окт-ноя)</td><td>Выбор темы, изучение литературы, постановка проблемы, гипотезы.</td></tr>
+                        <tr><td>Основной (дек-фев)</td><td>Анкетирование, анализ данных, создание буклета и презентации, проверка руководителем.</td></tr>
+                        <tr><td>Заключительный (март-апр)</td><td>Публичная защита на школьной конференции, раздача буклетов, рефлексия.</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Помощь и телефоны доверия -->
+    <section id="help" style="background: #e7f0fa;">
+        <div class="container">
+            <div class="help-box">
+                <h2 style="margin-bottom: 16px;">📞 Нужна помощь или совет?</h2>
+                <p>Если ты или твой друг столкнулись с проблемой употребления алкоголя — важно не молчать. Анонимная помощь доступна 24/7.</p>
+                <p><strong>☎️ Всероссийский детский телефон доверия:</strong> 8-800-2000-122</p>
+                <p><strong>🏥 Бесплатная консультация нарколога (для подростков):</strong> 8-800-700-54-54</p>
+                <p><strong>👥 Чат поддержки "Твоя территория":</strong> podrostok.online (круглосуточно)</p>
+                <div style="margin-top: 20px;">
+                    <a href="#" class="btn" style="background: #2c6e9e;">Скачать памятку (PDF)</a>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.9rem;">Все консультации конфиденциальны. Береги себя!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Положительные эффекты проекта -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Эффекты проекта</h2>
+            <div class="card-grid">
+                <div class="card"><span class="stat-number">✔️</span><br>Повышение информированности среди учащихся 10-х классов (опрос после защиты показал +47% правильных ответов).</div>
+                <div class="card"><span class="stat-number">🎓</span><br>Буклет передан в кабинет психолога и используется на профилактических занятиях.</div>
+                <div class="card"><span class="stat-number">💬</span><br>После выступления несколько учеников обратились к психологу за индивидуальной консультацией — важный социальный результат.</div>
+            </div>
+            <div class="quote">
+                «Проект помог мне самому глубже понять проблему. Теперь я знаю, что даже "безобидное" пиво в 16 лет — это удар по будущему. И я рад, что могу поделиться правдивой информацией с друзьями».
+              
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2026 — Минкевич Самуил Евгеньевич </p>
+        <p style="margin-top: 10px;">Тема: «Влияние алкоголя на организм подростка» | Руководитель: учитель биологии | Все данные основаны на научных источниках и анкетировании</p>
+    </div>
+</footer>
+</body>
+</html>
